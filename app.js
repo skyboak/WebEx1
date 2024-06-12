@@ -1,4 +1,4 @@
-const header = document.querySelector('h1') 
+const header = document.querySelector('h1')
 const app = document.getElementById('app')
 const ddMenu = document.querySelector('#ddMenu')
 const sandwitch = document.querySelectorAll('svg')
@@ -11,7 +11,7 @@ const setView = (v) => {
     toggleMenu(true)
 
     if (v === 'Calculator') {
-      renderCalculator()
+        renderCalculator()
     } else if (v === 'About') {
         renderAbout()
     } else if (v === 'Contact') {
@@ -84,12 +84,12 @@ const renderContact = () => {
     app.innerHTML = '<div class="p-4 h-[200px] flex items-center justify-center">Temp for Contact</div>'
 }
 
-const renderMenu = ()=>{
-  // to do
+const renderMenu = () => {
+    // to do
 }
 
-const renderThemeToggle = () =>{
-  // to do
+const renderThemeToggle = () => {
+    // to do
 }
 
 renderMenu()
