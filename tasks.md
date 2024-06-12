@@ -2,6 +2,8 @@
 - enter new folder
 - clone the exercise from git
     git clone https://github.com/alexvirtech/exercise2.git
+- go to the created project folder
+    cd exercise2
 - install dependencies
     npm install
 
