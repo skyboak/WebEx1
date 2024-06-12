@@ -1,9 +1,8 @@
-const header = document.querySelector('h1')
+const header = document.querySelector('h1') 
 const app = document.getElementById('app')
 const ddMenu = document.querySelector('#ddMenu')
 const sandwitch = document.querySelectorAll('svg')
 const html = document.documentElement
-const buttons = document.querySelectorAll('.d-btn')
 
 const toggle = () => html.classList.toggle('dark')
 
@@ -73,6 +72,7 @@ const renderCalculator = () => {
     app.innerHTML = ''
     addMonitor(app)
     addButtons(app, labels)
+    const buttons = document.querySelectorAll('.d-btn')
     buttons.forEach((el) => el.addEventListener('click', click))
 }
 
@@ -84,4 +84,14 @@ const renderContact = () => {
     app.innerHTML = '<div class="p-4 h-[200px] flex items-center justify-center">Temp for Contact</div>'
 }
 
+const renderMenu = ()=>{
+  // to do
+}
+
+const renderThemeToggle = () =>{
+  // to do
+}
+
+renderMenu()
+renderThemeToggle()
 renderCalculator()
