@@ -9,7 +9,7 @@ const toggle = () => html.classList.toggle('dark')
 const setView = (v) => {
     header.innerText = v
     toggleMenu(true)
-
+    renderMenu();
     if (v === 'Calculator') {
         renderCalculator()
     } else if (v === 'About') {
@@ -53,6 +53,19 @@ const addButtons = (container, nums) => {
     addRow(container, btnHTML)
 }
 
+const menu = () => {
+    return `<div class="justify-start gap-4 hidden sm:flex">
+                <button onclick="setView('Calculator')">Calculator</button>
+                <button onclick="setView('About')">About</button>
+                <button onclick="setView('Contact')">Contact</button>
+            </div>`;
+};
+
+const addMenu = (container) => {
+    container.innerHTML = menu();
+};
+
+
 const click = (event) => {
     const monitor = document.getElementById('monitor')
     const bac = monitor.innerText.trim()
@@ -68,7 +81,7 @@ const click = (event) => {
 }
 
 const renderCalculator = () => {
-    const labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '+', '-', '*', '/', '**', 'calculate', 'clear']
+    const labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '+', '-', '*', '/', '**', 'calculate', 'clear',]
     app.innerHTML = ''
     addMonitor(app)
     addButtons(app, labels)
@@ -81,11 +94,15 @@ const renderAbout = () => {
 }
 
 const renderContact = () => {
+
     app.innerHTML = '<div class="p-4 h-[200px] flex items-center justify-center">Temp for Contact</div>'
 }
 
 const renderMenu = () => {
-    // to do
+    const menuContainer = document.createElement('div');
+    menuContainer.id = 'menuContainer';
+    app.insertAdjacentElement('afterbegin', menuContainer);
+    addMenu(menuContainer);
 }
 
 const renderThemeToggle = () => {
