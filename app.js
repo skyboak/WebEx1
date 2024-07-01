@@ -61,15 +61,24 @@ const menu = () => {
                 <button class="text-white bg-blue-500 px-2 py-1 rounded" id="calculatorBtn">Calculator</button>
                 <button class="text-white bg-blue-500 px-2 py-1 rounded" id="aboutBtn">About</button>
                 <button class="text-white bg-blue-500 px-2 py-1 rounded" id="contactBtn">Contact</button>
+            </div>`;
+};
+const darkButton = () => {
+    return `<div class="justify-start gap-4 flex">
                 <button class="text-white bg-blue-500 px-2 py-1 rounded" id="themeToggleBtn">Toggle Theme</button>
             </div>`;
 };
+
 
 const addMenu = (container) => {
     container.innerHTML = menu();
     document.getElementById('calculatorBtn').addEventListener('click', () => setView('Calculator'));
     document.getElementById('aboutBtn').addEventListener('click', () => setView('About'));
     document.getElementById('contactBtn').addEventListener('click', () => setView('Contact'));
+    
+};
+const addDarkButton = (container) => {
+    container.innerHTML = darkButton();
     document.getElementById('themeToggleBtn').addEventListener('click', toggle);
     
 };
@@ -118,7 +127,13 @@ const renderMenu = () => {
 };
 
 const renderThemeToggle = () => {
-    // to do
+    let darkButtonContainer = document.getElementById('darkButtonContainer');
+    if (!darkButtonContainer) {
+        darkButtonContainer = document.createElement('div');
+        darkButtonContainer.id = 'darkButtonContainer';
+        document.getElementById('topMenu').appendChild(darkButtonContainer);
+    }
+    addDarkButton(darkButtonContainer);
 }
 
 renderMenu()
