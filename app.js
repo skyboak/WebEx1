@@ -4,12 +4,21 @@ const ddMenu = document.querySelector('#ddMenu')
 const sandwitch = document.querySelectorAll('svg')
 const html = document.documentElement
 
-const toggle = () => html.classList.toggle('dark')
+const toggle = () => {
+    html.classList.toggle('dark');
+    // Toggle dark mode for calculator buttons
+    document.querySelectorAll('.d-btn').forEach(btn => {
+        btn.classList.toggle('dark');
+    });
+}
 
 const setView = (v) => {
     header.innerText = v
     //toggleMenu(true)
-
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (!mobileMenu.classList.contains('hidden')) {
+        toggleMobileMenu();
+    }
     if (v === 'Calculator') {
         renderCalculator()
     } else if (v === 'About') {
@@ -42,13 +51,13 @@ const addRow = (container, content) => {
 
 const addMonitor = (container, text) => {
     const t = text ?? ''
-    const monitor = `<div id='monitor' class="bg-white border-4 border-blue-400 h-20 flex items-center col-span-5 text-blue-800 p-2 rounded-lg mb-2 font-bold text-4xl">${t}</div>`
+    const monitor = `<div id='monitor' class="bg-white border-4 dark:bg-gray-300 border-blue-400 h-20 flex items-center col-span-5 text-blue-800 p-2 rounded-lg mb-2 font-bold text-4xl">${t}</div>`
     container.insertAdjacentHTML('beforeend', monitor)
 }
 
 const button = (text) => {
     const c = text === 'calculate' ? 'col-span-4' : ''
-    return `<div class='bg-blue-400 hover:bg-blue-600 text-white ${c} py-1 rounded-md text-center text-lg font-bold cursor-pointer d-btn'>${text}</div>`
+    return `<div class='bg-blue-400 dark:bg-blue-700 hover:bg-blue-600 text-white ${c} py-1 rounded-md text-center text-lg font-bold cursor-pointer d-btn'>${text}</div>`
 }
 
 const addButtons = (container, nums) => {
@@ -57,26 +66,61 @@ const addButtons = (container, nums) => {
 }
 
 const menu = () => {
-    return `<div class="justify-start gap-4 flex">
+    return `
+        <div class="flex items-center">
+            <div class="hidden md:flex justify-start gap-4">
                 <button class="text-white bg-blue-500 px-2 py-1 rounded" id="calculatorBtn">Calculator</button>
                 <button class="text-white bg-blue-500 px-2 py-1 rounded" id="aboutBtn">About</button>
                 <button class="text-white bg-blue-500 px-2 py-1 rounded" id="contactBtn">Contact</button>
-            </div>`;
+            </div>
+            <button id="mobileMenuBtn" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden">
+            <button class="block w-full text-left text-white bg-blue-500 px-2 py-1 rounded mt-1" id="mobileCalculatorBtn">Calculator</button>
+            <button class="block w-full text-left text-white bg-blue-500 px-2 py-1 rounded mt-1" id="mobileAboutBtn">About</button>
+            <button class="block w-full text-left text-white bg-blue-500 px-2 py-1 rounded mt-1" id="mobileContactBtn">Contact</button>
+        </div>
+    `;
 };
+
+
+
 const darkButton = () => {
     return `<div class="justify-start gap-4 flex">
-                <button class="text-white bg-blue-500 px-2 py-1 rounded" id="themeToggleBtn">Toggle Theme</button>
+                <button class="text-white bg-blue-500  dark:bg-blue-700 px-2 py-1 rounded" id="themeToggleBtn">Toggle Theme</button>
             </div>`;
 };
 
 
 const addMenu = (container) => {
     container.innerHTML = menu();
-    document.getElementById('calculatorBtn').addEventListener('click', () => setView('Calculator'));
-    document.getElementById('aboutBtn').addEventListener('click', () => setView('About'));
-    document.getElementById('contactBtn').addEventListener('click', () => setView('Contact'));
-    
+    const desktopButtons = ['calculatorBtn', 'aboutBtn', 'contactBtn'];
+    const mobileButtons = ['mobileCalculatorBtn', 'mobileAboutBtn', 'mobileContactBtn'];
+    const views = ['Calculator', 'About', 'Contact'];
+
+    desktopButtons.forEach((btn, index) => {
+        document.getElementById(btn).addEventListener('click', () => setView(views[index]));
+    });
+
+    mobileButtons.forEach((btn, index) => {
+        document.getElementById(btn).addEventListener('click', () => {
+            setView(views[index]);
+            toggleMobileMenu();
+        });
+    });
+
+    document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
 };
+
+const toggleMobileMenu = () => {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.toggle('hidden');
+};
+
 const addDarkButton = (container) => {
     container.innerHTML = darkButton();
     document.getElementById('themeToggleBtn').addEventListener('click', toggle);
