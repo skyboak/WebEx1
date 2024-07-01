@@ -8,13 +8,16 @@ const toggle = () => html.classList.toggle('dark')
 
 const setView = (v) => {
     header.innerText = v
-    toggleMenu(true)
-    renderMenu();
+    //toggleMenu(true)
+
     if (v === 'Calculator') {
         renderCalculator()
     } else if (v === 'About') {
+        console.log('About')
         renderAbout()
     } else if (v === 'Contact') {
+        console.log('Contact')
+
         renderContact()
     }
 }
@@ -54,15 +57,21 @@ const addButtons = (container, nums) => {
 }
 
 const menu = () => {
-    return `<div class="justify-start gap-4 hidden sm:flex">
-                <button onclick="setView('Calculator')">Calculator</button>
-                <button onclick="setView('About')">About</button>
-                <button onclick="setView('Contact')">Contact</button>
+    return `<div class="justify-start gap-4 flex">
+                <button class="text-white bg-blue-500 px-2 py-1 rounded" id="calculatorBtn">Calculator</button>
+                <button class="text-white bg-blue-500 px-2 py-1 rounded" id="aboutBtn">About</button>
+                <button class="text-white bg-blue-500 px-2 py-1 rounded" id="contactBtn">Contact</button>
+                <button class="text-white bg-blue-500 px-2 py-1 rounded" id="themeToggleBtn">Toggle Theme</button>
             </div>`;
 };
 
 const addMenu = (container) => {
     container.innerHTML = menu();
+    document.getElementById('calculatorBtn').addEventListener('click', () => setView('Calculator'));
+    document.getElementById('aboutBtn').addEventListener('click', () => setView('About'));
+    document.getElementById('contactBtn').addEventListener('click', () => setView('Contact'));
+    document.getElementById('themeToggleBtn').addEventListener('click', toggle);
+    
 };
 
 
@@ -94,16 +103,19 @@ const renderAbout = () => {
 }
 
 const renderContact = () => {
-
     app.innerHTML = '<div class="p-4 h-[200px] flex items-center justify-center">Temp for Contact</div>'
 }
 
+
 const renderMenu = () => {
-    const menuContainer = document.createElement('div');
-    menuContainer.id = 'menuContainer';
-    app.insertAdjacentElement('afterbegin', menuContainer);
+    let menuContainer = document.getElementById('menuContainer');
+    if (!menuContainer) {
+        menuContainer = document.createElement('div');
+        menuContainer.id = 'menuContainer';
+        document.getElementById('topMenu').appendChild(menuContainer);
+    }
     addMenu(menuContainer);
-}
+};
 
 const renderThemeToggle = () => {
     // to do
@@ -112,3 +124,4 @@ const renderThemeToggle = () => {
 renderMenu()
 renderThemeToggle()
 renderCalculator()
+
