@@ -57,16 +57,16 @@ div {
     align-items: center;
     margin-top: 5vh;
     margin-bottom: 5vh;
-    column-gap:  50vh; /* Add row gap */
-    row-gap: 20vw;
+    column-gap:  30vh; /* Add row gap */
+    row-gap: 10vw;
 }
 .eggSelector input {
     display: none;
 }
-.eggSelector label{
+.eggSelector label img{
     display: inline-block;
-    width: 10px; /* Set your desired image size */
-    height: 10px;
+    width: 10vw; /* Set your desired image size */
+    height: 10vh;
     background-size: cover;
     cursor: pointer;
     border: 2px solid transparent; /* Optional: for visual feedback */;
@@ -99,4 +99,15 @@ div {
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
+#continueBtn{
+    position: fixed;
+    background-color: #e36588;
+    font-size: 2vw;
+    bottom: 4vh;
+    right: 10vw;
+    border: none;
+    cursor: pointer;
+    width: 20vw;
+    height: 8vh;
+}
 
