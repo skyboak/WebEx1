@@ -23,5 +23,22 @@ document.addEventListener('DOMContentLoaded', function() {
             updateContinueButtonVisibility();
         });
     });
+
+    const musicBtn = document.querySelector('.musicBtn');
+    let isDefaultImage = true; // Flag to track the button's state
+
+    musicBtn.addEventListener('click', function() {
+        if (isDefaultImage) {
+            // Change to the new image if the current image is the default
+            this.src = '/assets/mute.png'; // Update this path to your new image
+        } else {
+            // Revert to the default image if the current image is the new one
+            this.src = '/assets/music.png'; // Update this path to your default image
+        }
+        // Toggle the flag
+        isDefaultImage = !isDefaultImage;
+    });
+
     updateContinueButtonVisibility();
+
 });

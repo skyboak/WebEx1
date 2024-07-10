@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
 body{
+    font-family:  'Press Start 2P', cursive;   
     background-color: #9ac4f8;
 }
 
@@ -12,14 +17,16 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 17vh;
     flex-direction: column;
+    /* Add any other font-related properties you want to inherit */
+
 }
 
 .menuButtons button {
+    font-family: inherit; /* This ensures buttons inherit the font family from the body */
     background-color: #e36588;
     margin: 1vh;
-    font-size: 2vw; /* Use viewport width for font size */
+    font-size: 3vw; /* Use viewport width for font size */
     border: none;
     cursor: pointer;
     width: 20vw;
@@ -44,9 +51,10 @@ div {
     height: auto; 
 }
 .eggTitle {
-    font-size: 5vw;
-    margin-top: 5vh;
-    background-color: #e36588;
+    font-size: 2vw;
+    margin-top: 2vh;
+    margin-bottom: 10vh;
+    background-color: #cb958e;
 }
 
 .eggSelector{
@@ -55,25 +63,23 @@ div {
     grid-template-rows: repeat(2, 1fr);
     justify-items: center;
     align-items: center;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-    column-gap:  30vh; /* Add row gap */
-    row-gap: 10vw;
+    margin-top: 4vh;
+    column-gap:  25vh; /* Add row gap */
+    row-gap: 8vw;
 }
 .eggSelector input {
     display: none;
 }
 .eggSelector label img{
     display: inline-block;
-    width: 10vw; /* Set your desired image size */
-    height: 10vh;
+    width: 108px; /* Set your desired image size */
+    height: 126px;
     background-size: cover;
     cursor: pointer;
     border: 2px solid transparent; /* Optional: for visual feedback */;
 }
 .eggSelector input:checked + label {
-    background-color: #e36588;
-    border: #e36588;
+
     animation: shake 0.5s infinite;
     
 }
@@ -82,7 +88,7 @@ div {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 5vh;
+    margin-top: 2vh;
 }
 
 @keyframes shake {
@@ -98,16 +104,100 @@ div {
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
 
 #continueBtn{
     position: fixed;
-    background-color: #e36588;
+    background-color: #cb958e;
     font-size: 2vw;
     bottom: 4vh;
     right: 10vw;
-    border: none;
+    border: 2px solid #000;
     cursor: pointer;
     width: 20vw;
     height: 8vh;
+    font-family: inherit;
+}
+.petBackground{
+    background-image: url('../WebEx1/assets/music.png');
+    width: 600px;
+    height: 600px;
+    text-align: center;
+    margin: 0 auto; /* Add this line to center the element horizontally */
+}
+.name-selector {
+    display: block;
+    width: 40vw;
+    height: 30vw;
+    padding: 1vh 3vw;
+;
 }
 
+.name-display {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6vh;
+}
+
+
+
+.letter {
+    font-size: 2rem;
+    margin: 0 5px;
+    padding: 10px;
+    border: 2px solid #000;
+    background-color: #cb958e;
+}
+.alphabet-letter , .misc-grid span {
+
+    font-size: 1.5rem;
+    padding: 10px;
+    border: 2px solid #000;
+    background-color: #cb958e;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+
+.alphabet-grid{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.alphabet-letter:hover , .misc-grid span:hover{
+    background-color: #e36588;
+}
+
+
+.misc-grid{
+    margin-top: 3vh;
+}
+
+.eggImg1{
+    width: 9vw;
+    height: auto;
+    animation: shake 4.5s infinite;
+    margin-bottom: 4vh;
+}
+#petImg1{
+    left: 24vw;
+}
+#petImg2{
+    right: 24vw;
+}
+#petImg1, #petImg2 {
+    animation: bounce 2s infinite;
+    position: fixed;
+    bottom: 24vh;
+  }
